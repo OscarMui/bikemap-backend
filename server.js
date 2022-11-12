@@ -10,6 +10,9 @@ const lessMiddleware = require('less-middleware');
 // const inputGetView = require("./routes/views/inputGet.js");
 // const inputPostView = require("./routes/views/inputPost.js");
 
+const readDatabase = require("./routes/readDatabase.js");
+const writeDatabase = require("./routes/writeDatabase.js");
+
 //constants
 const app = express();
 const port = process.env.PORT || 3000;
@@ -23,6 +26,9 @@ app.use(express.urlencoded({extended: true}));
 app.get('/',(req,res)=>{res.json({
     msg: "Hello world",
 });})
+app.get('/read-database',readDatabase);
+app.all('/write-database',writeDatabase);
+
 // app.get('/',(req,res)=>{res.render("index");});
 // app.get('/timeline',(req,res)=>{res.render("timeline");});
 // app.get('/cards',(req,res)=>{res.render("cards");});

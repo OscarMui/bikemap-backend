@@ -17,6 +17,7 @@
     "less-middleware": "^3.1.0",
     "less-plugin-autoprefix": "^2.0.0",
     "lodash": "^4.13.1",
+    "node-appwrite": "^8.1.0",
     "pug": "^3.0.0"
   },
   "devDependencies": {
