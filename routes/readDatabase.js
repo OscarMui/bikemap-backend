@@ -14,5 +14,6 @@ exports = module.exports = function (req, res) {
 
     const promise = databases.listDocuments('636f8ba30acc91d1c45f', '636f8be705efa1e3529f');
 
-    promise.then(function (response) {res.json(response)}, function (error) {res.json(error)});
+    console.log("HERE")
+    promise.then(function (response) {console.log(response); res.json(response)}, function (error) {console.log(error); res.json(error)});
 }
