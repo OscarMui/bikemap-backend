@@ -14,6 +14,19 @@ exports = module.exports = function (req, res) {
 
     const promise = databases.listDocuments(process.env.DATABASE_ID, process.env.COLLECTION_ID);
 
-    console.log("HERE")
-    promise.then(function (response) {console.log(response); res.json(response)}, function (error) {console.log(error); res.json(error)});
+    promise.then(function (response) {
+        let newres = {...response};
+        newres.documents = newres.documents.map((doc)=>{ return {
+            lng: doc.Longitude,
+            lat: doc.Longitude,
+            user: doc.User,
+            title: doc.Title,
+            description: doc.Description,
+            timeUntil: doc.timeUntil,
+        }});
+        res.json(newres)
+    }, function (error) {
+        console.log(error);
+        res.json(error)
+    });
 }
