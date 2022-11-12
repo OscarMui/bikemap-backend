@@ -3,6 +3,7 @@
 require('dotenv').config();
 
 // Require
+const cors = require('cors');
 const express = require('express');
 const env = require('dotenv');
 const lessMiddleware = require('less-middleware');
@@ -18,6 +19,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 //to allow POST request 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 

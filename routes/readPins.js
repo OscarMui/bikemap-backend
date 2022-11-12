@@ -18,7 +18,7 @@ exports = module.exports = function (req, res) {
         let newres = {...response};
         newres.documents = newres.documents.map((doc)=>{ return {
             lng: doc.Longitude,
-            lat: doc.Longitude,
+            lat: doc.Latitude,
             user: doc.User,
             title: doc.Title,
             description: doc.Description,
