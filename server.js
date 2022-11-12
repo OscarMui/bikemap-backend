@@ -7,8 +7,8 @@ const express = require('express');
 const env = require('dotenv');
 const lessMiddleware = require('less-middleware');
 
-const inputGetView = require("./routes/views/inputGet.js");
-const inputPostView = require("./routes/views/inputPost.js");
+// const inputGetView = require("./routes/views/inputGet.js");
+// const inputPostView = require("./routes/views/inputPost.js");
 
 //constants
 const app = express();
@@ -20,13 +20,16 @@ app.use(express.urlencoded({extended: true}));
 
 //ROUTING
 //views
-app.get('/',(req,res)=>{res.render("index");});
-app.get('/timeline',(req,res)=>{res.render("timeline");});
-app.get('/cards',(req,res)=>{res.render("cards");});
-app.get('/photos',(req,res)=>{res.render("photos");});
-app.get('/input/ajax',(req,res)=>{res.render("inputAjax");});
-app.get('/input/get',inputGetView);
-app.all('/input/post',inputPostView);
+app.get('/',(req,res)=>{res.json({
+    msg: "Hello world",
+});})
+// app.get('/',(req,res)=>{res.render("index");});
+// app.get('/timeline',(req,res)=>{res.render("timeline");});
+// app.get('/cards',(req,res)=>{res.render("cards");});
+// app.get('/photos',(req,res)=>{res.render("photos");});
+// app.get('/input/ajax',(req,res)=>{res.render("inputAjax");});
+// app.get('/input/get',inputGetView);
+// app.all('/input/post',inputPostView);
 
 //app.set, app.use
 app.set("view engine","pug");
@@ -37,7 +40,7 @@ app.use(lessMiddleware('dist'));
 app.use(express.static('dist'));
 
 //404 not found
-app.get("*",(req,res)=>{res.render("errors/404");});
+// app.get("*",(req,res)=>{res.render("errors/404");});
 
 //start
 app.listen(port, () => console.log(`Web app listening at http://localhost:${port}`));
