@@ -10,8 +10,8 @@ const lessMiddleware = require('less-middleware');
 // const inputGetView = require("./routes/views/inputGet.js");
 // const inputPostView = require("./routes/views/inputPost.js");
 
-const readDatabase = require("./routes/readDatabase.js");
-const writeDatabase = require("./routes/writeDatabase.js");
+const readPins = require("./routes/readPins.js");
+const writePins = require("./routes/writePins.js");
 
 //constants
 const app = express();
@@ -26,8 +26,8 @@ app.use(express.urlencoded({extended: true}));
 app.get('/',(req,res)=>{res.json({
     msg: "Hello world",
 });})
-app.get('/read-database',readDatabase);
-app.all('/write-database',writeDatabase);
+app.get('/read-pins',readPins);
+app.all('/write-pins',writePins);
 
 // app.get('/',(req,res)=>{res.render("index");});
 // app.get('/timeline',(req,res)=>{res.render("timeline");});
