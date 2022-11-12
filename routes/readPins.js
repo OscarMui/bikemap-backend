@@ -17,6 +17,7 @@ exports = module.exports = function (req, res) {
     promise.then(function (response) {
         let newres = {...response};
         newres.documents = newres.documents.map((doc)=>{ return {
+						type: doc.Type,
             lng: doc.Longitude,
             lat: doc.Latitude,
             user: doc.User,

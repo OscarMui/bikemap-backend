@@ -16,7 +16,7 @@ exports = module.exports = function (req, res) {
     .setProject(process.env.PROJECT_ID) // Your project ID
     .setKey(process.env.APPWRITE_API_KEY); // Your secret API key
 
-    const promise = databases.createDocument(process.env.DATABASE_ID, process.env.COLLECTION_ID, 'unique()', {'User':body.user, 'Longitude':body.lng, 'Latitude':body.lat, 'Title':body.title, 'Description':body.description, });
+    const promise = databases.createDocument(process.env.DATABASE_ID, process.env.COLLECTION_ID, 'unique()', {'User':body.user, 'Type': body.type, 'Longitude':body.lng, 'Latitude':body.lat, 'Title':body.title, 'Description':body.description, });
     
     promise.then(
         function (response) {
