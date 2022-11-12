@@ -12,7 +12,7 @@ exports = module.exports = function (req, res) {
     .setKey(process.env.APPWRITE_API_KEY); // Your secret API key
 
 
-    const promise = databases.listDocuments(process.env.DATABASE_ID, process.env.COLLECTION_ID);
+    const promise = databases.listDocuments(process.env.DATABASE_ID, process.env.COLLECTION_ID, [sdk.Query.limit(100)]);
 
     promise.then(function (response) {
         let newres = {...response};
