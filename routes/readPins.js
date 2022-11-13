@@ -24,7 +24,7 @@ exports = module.exports = function (req, res) {
             title: doc.Title,
             description: doc.Description,
             timeUntil: doc.timeUntil,
-            voteNum: doc.votes?.length || 0,
+            voteNum: doc.Votes?.length || 0,
             id: doc["$id"]
         }});
         res.json(newres)

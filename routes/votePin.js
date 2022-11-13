@@ -31,7 +31,7 @@ exports = module.exports = function (req, res) {
                 title: response.Title,
                 description: response.Description,
                 timeUntil: response.timeUntil,
-                voteNum: response.votes?.length || 0,
+                voteNum: response.Votes?.length || 0,
                 id: response["$id"]
             };
             if(response.Votes?.includes(deviceId)){
