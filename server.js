@@ -14,6 +14,7 @@ const lessMiddleware = require('less-middleware');
 const readPins = require("./routes/readPins.js");
 const writePins = require("./routes/writePins.js");
 const initRoute = require("./routes/init.js");
+const voteRoute = require("./routes/votePin.js");
 
 //constants
 const app = express();
@@ -32,6 +33,8 @@ app.get('/',(req,res)=>{res.json({
 app.get('/read-pins',readPins);
 app.get("/init",initRoute);
 app.all('/write-pins',writePins);
+app.all('/vote-pin',voteRoute);
+
 
 // app.get('/',(req,res)=>{res.render("index");});
 // app.get('/timeline',(req,res)=>{res.render("timeline");});

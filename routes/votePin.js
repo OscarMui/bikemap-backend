@@ -4,7 +4,8 @@ exports = module.exports = function (req, res) {
 
     let method = req.method;
     
-    let {id, deviceId} = req.body;
+    console.log(req.query)
+    let {id, deviceId} = req.query;
     console.log(method, id, deviceId)
 
 
@@ -20,20 +21,20 @@ exports = module.exports = function (req, res) {
     const read = databases.getDocument(process.env.DATABASE_ID, process.env.COLLECTION_ID, id);
 
     read.then(
-        function(res){
-            let newdoc = {...res};
+        function(response){
+            let newdoc = {...response};
             newdoc = {
-                type: res.Type,
-                lng: res.Longitude,
-                lat: res.Latitude,
-                user: res.User,
-                title: res.Title,
-                description: res.Description,
-                timeUntil: res.timeUntil,
-                voteNum: res.votes.length,
-                id: res["$id"]
+                type: response.Type,
+                lng: response.Longitude,
+                lat: response.Latitude,
+                user: response.User,
+                title: response.Title,
+                description: response.Description,
+                timeUntil: response.timeUntil,
+                voteNum: response.votes?.length || 0,
+                id: response["$id"]
             };
-            if(res.Votes.includes(deviceId)){
+            if(response.Votes?.includes(deviceId)){
                 console.log("vote exists")
                 res.json({
                     status: "vote_exists",
@@ -41,16 +42,16 @@ exports = module.exports = function (req, res) {
                 })
             }else{
                 let update = databases.updateDocument(process.env.DATABASE_ID, process.env.COLLECTION_ID, id, {
-                    Votes: [...res.Votes,deviceId]
+                    Votes: [...(response.Votes||[]),deviceId]
                 })
 
                 update.then(
-                    function (res) {
+                    function (response) {
                         res.json({
                             status: "vote_accepted",
                             document: {
                                 ...newdoc,
-                                voteNum: newdoc.vote+1,
+                                voteNum: newdoc.voteNum+1,
                             }
                         })
                     }, function (error) {
@@ -60,8 +61,8 @@ exports = module.exports = function (req, res) {
                 )
             }
         }, function(err){
-            console.log(error)
-            res.json(error)
+            console.log(err)
+            res.json(err)
         }
     )
 }
